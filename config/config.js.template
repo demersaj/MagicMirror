@@ -1,0 +1,184 @@
+
+/* MagicMirror² Config Sample
+ *
+ * By Michael Teeuw https://michaelteeuw.nl
+ * MIT Licensed.
+ *
+ * For more information on how you can configure this file
+ * see https://docs.magicmirror.builders/configuration/introduction.html
+ * and https://docs.magicmirror.builders/modules/configuration.html
+ *
+ * You can use environment variables using a `config.js.template` file instead of `config.js`
+ * which will be converted to `config.js` while starting. For more information
+ * see https://docs.magicmirror.builders/configuration/introduction.html#enviromnent-variables
+ */
+let config = {
+	address: "0.0.0.0",	// Address to listen on, can be:
+							// - "localhost", "127.0.0.1", "::1" to listen on loopback interface
+							// - another specific IPv4/6 to listen on a specific interface
+							// - "0.0.0.0", "::" to listen on any interface
+							// Default, when address config is left out or empty, is "localhost"
+	port: 8080,
+	basePath: "/",	// The URL path where MagicMirror² is hosted. If you are using a Reverse proxy
+									// you must set the sub path here. basePath must end with a /
+	ipWhitelist: ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.0.1/120", "192.168.10.1/24"], // Set [] to allow all IP addresses
+									// or add a specific IPv4 of 192.168.1.5 :
+									// ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.1.5"],
+									// or IPv4 range of 192.168.3.0 --> 192.168.3.15 use CIDR format :
+									// ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.3.0/28"],
+
+	useHttps: false,			// Support HTTPS or not, default "false" will use HTTP
+	httpsPrivateKey: "",	// HTTPS private key path, only require when useHttps is true
+	httpsCertificate: "",	// HTTPS Certificate path, only require when useHttps is true
+
+	language: "en",
+	locale: "en-US",
+	logLevel: ["INFO", "LOG", "WARN", "ERROR"], // Add "DEBUG" for even more logging
+	timeFormat: 12,
+	units: "imperial",
+
+	modules: [
+		{
+  			 module: 'MMM-JokeAPI',
+			 position: 'top_center',
+			 config: {
+		         category: "Dark"
+			 }
+		},
+		{
+			module: "MMM-PIR-Sensor-Lite",
+			config: {
+				sensorPin: 26, // GPIO pin,
+				deactivateDelay: 10 * 60 * 1000,
+				showCountDown: false,
+				showDetection: false
+				}
+		},
+		{
+   			 module: 'MMM-Remote-Control',
+   			 // uncomment the following line to show the URL of the remote control on the mirror
+			 // position: 'bottom_left',
+			 // you can hide this module afterwards from the remote control itself
+    			config: {
+        			customCommand: {},  // Optional, See "Using Custom Commands" below
+       				showModuleApiMenu: true, // Optional, Enable the Module Controls menu
+			        secureEndpoints: true // Optional, See API/README.md
+			        // uncomment any of the lines below if you're gonna use it
+			        // customMenu: "custom_menu.json", // Optional, See "Custom Menu Items" below
+			        // apiKey: "", // Optional, See API/README.md for details
+			        // classes: {} // Optional, See "Custom Classes" below
+    				}
+		},
+		{
+           		 module: 'MMM-QRCode',
+           		 position: 'bottom_left', // change the position according to your need best position is either bottom right or left.
+            		 config: {
+                		text: '${TAPLIST}', // enter your message here.
+               			showRaw: false, // true = to show the text, false = to hide the text.
+                		imageSize: 150, // size is in px (both the height and with are equal).
+                		colorDark: "#fff", // set qrcode px color.
+               			colorLight: "#000" // set backgroud background color(by default color is BLACK).
+            	}
+		},
+		{
+			module: "MMM-Traffic",
+			position: "bottom_left",
+			config: {
+				accessToken: "${TRAFFIC_ACCESS_TOKEN}",
+				originCoords: "${ORIGIN}",
+				destinationCoords: "${DAYCARE}",
+				firstLine: "{duration} mins",
+				secondLine: "Daycare",
+			}
+		},
+		{
+			module: "MMM-Traffic",
+			position: "bottom_left",
+			config: {
+				accessToken: "${TRAFFIC_ACCESS_TOKEN}",
+				originCoords: "${ORIGIN}",
+				destinationCoords: "${SETH}",
+				firstLine: "{duration} mins",
+				secondLine: "Seth <3"
+			}
+		},
+		{
+  			module: "MMM-NowPlayingOnSpotify",
+  			position: "bottom_right",
+
+  			config: {
+    				clientID: "${SPOTIFY_CLIENT_ID}",
+    				clientSecret: "${SPOTIFY_CLIENT_SECRET}",
+    				accessToken: "${SPOTIFY_ACCESS_TOKEN}",
+   				refreshToken: "${SPOTIFY_REFRESH_TOKEN}",
+				showCoverArt: true
+  			}
+		},
+		{
+			module: "alert",
+		},
+		{
+			module: "updatenotification"
+		},
+		{
+			module: "clock",
+			position: "top_left"
+		},
+		{
+			module: "calendar",
+			header: "Demers Family Calendar",
+			position: "top_left",
+			config: {
+				calendars: [
+					{
+						fetchInterval: 30000,
+						symbol: "calendar-check",
+						url: "${CALENDAR}"
+					}
+				]
+			}
+		},
+		{
+			module: "weather",
+			position: "top_right",
+			config: {
+				weatherProvider: "openweathermap",
+				type: "current",
+				location: "Austin",
+				locationID: "4671654", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+				apiKey: "${WEATHER_API_KEY}"
+			}
+		},
+		{
+			module: "weather",
+			position: "top_right",
+			header: "Weather Forecast",
+			config: {
+				weatherProvider: "openweathermap",
+				type: "forecast",
+				location: "Austin",
+				locationID: "4671654", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+				apiKey: "${WEATHER_API_KEY}"
+			}
+		},
+		{
+			module: "newsfeed",
+			position: "bottom_bar",
+			config: {
+				feeds: [
+					{
+						title: "New York Times",
+						url: "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+					}
+				],
+				showSourceTitle: true,
+				showPublishDate: true,
+				broadcastNewsFeeds: true,
+				broadcastNewsUpdates: true
+			}
+		},
+	]
+};
+
+/*************** DO NOT EDIT THE LINE BELOW ***************/
+if (typeof module !== "undefined") { module.exports = config; }
