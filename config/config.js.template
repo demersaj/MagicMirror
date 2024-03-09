@@ -163,11 +163,20 @@ let config = {
 				feeds: [
 					{
 						title: "BBC News",
-						url: "https://feeds.bbci.co.uk/news/rss.xml"
+						url: "https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml"
+					},
+					{
+						title: "WSJ",
+						url: "https://feeds.a.dj.com/rss/RSSWSJD.xml"
+					},
+					{
+						title: "Reuters",
+						url: "https://www.reutersagency.com/feed/?taxonomy=best-sectors&post_type=best"
 					}
 				],
 				showSourceTitle: true,
 				showPublishDate: true,
+				showDescription: true,
 				broadcastNewsFeeds: true,
 				broadcastNewsUpdates: true
 			}
