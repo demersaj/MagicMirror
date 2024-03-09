@@ -42,8 +42,8 @@ let config = {
   			 module: 'MMM-JokeAPI',
 			 position: 'top_center',
 			 config: {
-		         category: "Dark",
-			 fetchInterval: 5 * 60 * 1000
+			         category: "Dark",
+				 fetchInterval: 5 * 60 * 1000
 			 }
 		},
 		{
@@ -53,7 +53,7 @@ let config = {
 				deactivateDelay: 10 * 60 * 1000,
 				showCountDown: false,
 				showDetection: false
-				}
+			}
 		},
 		{
    			 module: 'MMM-Remote-Control',
@@ -68,7 +68,7 @@ let config = {
 			        // customMenu: "custom_menu.json", // Optional, See "Custom Menu Items" below
 			        // apiKey: "", // Optional, See API/README.md for details
 			        // classes: {} // Optional, See "Custom Classes" below
-    				}
+    			}
 		},
 		{
            		 module: 'MMM-QRCode',
@@ -79,7 +79,7 @@ let config = {
                 		imageSize: 150, // size is in px (both the height and with are equal).
                 		colorDark: "#fff", // set qrcode px color.
                			colorLight: "#000" // set backgroud background color(by default color is BLACK).
-            	}
+         	   	}
 		},
 		{
 			module: "MMM-Traffic",
@@ -114,12 +114,6 @@ let config = {
    				refreshToken: "${SPOTIFY_REFRESH_TOKEN}",
 				showCoverArt: true
   			}
-		},
-		{
-			module: "alert",
-		},
-		{
-			module: "updatenotification"
 		},
 		{
 			module: "clock",
@@ -168,8 +162,8 @@ let config = {
 			config: {
 				feeds: [
 					{
-						title: "New York Times",
-						url: "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+						title: "BBC News",
+						url: "https://feeds.bbci.co.uk/news/rss.xml"
 					}
 				],
 				showSourceTitle: true,
