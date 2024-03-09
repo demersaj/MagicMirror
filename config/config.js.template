@@ -42,7 +42,8 @@ let config = {
   			 module: 'MMM-JokeAPI',
 			 position: 'top_center',
 			 config: {
-		         category: "Dark"
+		         category: "Dark",
+			 fetchInterval: 5 * 60 * 1000
 			 }
 		},
 		{
