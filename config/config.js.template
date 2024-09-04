@@ -1,4 +1,3 @@
-
 /* MagicMirror² Config Sample
  *
  * By Michael Teeuw https://michaelteeuw.nl
@@ -42,8 +41,7 @@ let config = {
   			 module: 'MMM-JokeAPI',
 			 position: 'top_center',
 			 config: {
-			         category: "Dark",
-				 fetchInterval: 5 * 60 * 1000
+				fetchInterval: 1000 * 5 * 60
 			 }
 		},
 		{
@@ -63,7 +61,7 @@ let config = {
     			config: {
         			customCommand: {},  // Optional, See "Using Custom Commands" below
        				showModuleApiMenu: true, // Optional, Enable the Module Controls menu
-			        secureEndpoints: true // Optional, See API/README.md
+			        secureEndpoints: false // Optional, See API/README.md
 			        // uncomment any of the lines below if you're gonna use it
 			        // customMenu: "custom_menu.json", // Optional, See "Custom Menu Items" below
 			        // apiKey: "", // Optional, See API/README.md for details
@@ -98,9 +96,9 @@ let config = {
 			config: {
 				accessToken: "${TRAFFIC_ACCESS_TOKEN}",
 				originCoords: "${ORIGIN}",
-				destinationCoords: "${SETH}",
+				destinationCoords: "${WORK}",
 				firstLine: "{duration} mins",
-				secondLine: "Seth <3"
+				secondLine: "webAI"
 			}
 		},
 		{
